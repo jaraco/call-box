@@ -1,4 +1,5 @@
 import os
+import io
 
 import cherrypy
 
@@ -14,10 +15,16 @@ config = {
 	},
 }
 
+
 class Server:
 	@cherrypy.expose
 	def index(self):
-		return "hello world"
+		cherrypy.headers['Content-Type'] = 'application/xml'
+		return self.load_response('welcome')
+
+	def load_response(self, name):
+		with io.open(name + '.xml') as strm:
+			return strm.read()
 
 	@classmethod
 	def run(cls):
