@@ -21,7 +21,7 @@ loader = TemplateLoader('.')
 
 class Server:
 	@cherrypy.expose
-	def index(self):
+	def index(self, **params):
 		return self.load_response('welcome')
 
 	@property
