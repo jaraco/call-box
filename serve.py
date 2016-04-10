@@ -29,7 +29,7 @@ class Server:
 		return list(filter(None, os.environ.get('NUMBERS', '').split(',')))
 
 	@cherrypy.expose
-	def authorize_entry(self, RecordingUrl, RecordingDuration, Digits):
+	def authorize_entry(self, RecordingUrl, **params):
 		return self.load_response(
 			'authorize-entry',
 			numbers=self.numbers,
