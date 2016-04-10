@@ -26,7 +26,7 @@ class Server:
 
 	@property
 	def numbers(self):
-		return os.environ['NUMBERS'].split(',')
+		return list(filter(None, os.environ.get('NUMBERS', '').split(',')))
 
 	@cherrypy.expose
 	def authorize_entry(self, RecordingUrl, RecordingDuration, Digits):
