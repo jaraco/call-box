@@ -19,12 +19,12 @@ config = {
 class Server:
 	@cherrypy.expose
 	def index(self):
-		cherrypy.headers['Content-Type'] = 'application/xml'
+		cherrypy.response.headers['Content-Type'] = 'application/xml'
 		return self.load_response('welcome')
 
 	def load_response(self, name):
 		with io.open(name + '.xml') as strm:
-			return strm.read()
+			return strm.read().encode('utf-8')
 
 	@classmethod
 	def run(cls):
