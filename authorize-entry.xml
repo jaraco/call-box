@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response xmlns:py="http://genshi.edgewall.org/">
+	<Say voice="woman">Welcome to Adams Row Condo.</Say>
+	<Play digits="9" />
+	<py:for each="number in numbers">
+		<Sms to="$number">Entry authorized to Adams Row Condo ($recording_URL)</Sms>
+	</py:for>
+</Response>

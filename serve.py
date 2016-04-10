@@ -2,6 +2,7 @@ import os
 import io
 
 import cherrypy
+from genshi.template import TemplateLoader
 
 
 config = {
@@ -16,15 +17,28 @@ config = {
 }
 
 
+loader = TemplateLoader('.')
+
 class Server:
 	@cherrypy.expose
 	def index(self):
-		cherrypy.response.headers['Content-Type'] = 'application/xml'
 		return self.load_response('welcome')
 
-	def load_response(self, name):
-		with io.open(name + '.xml') as strm:
-			return strm.read().encode('utf-8')
+	@property
+	def numbers(self):
+		return os.environ['NUMBERS'].split(',')
+
+	@cherrypy.expose
+	def authorize_entry(self, RecordingUrl, RecordingDuration, Digits):
+		return self.load_response(
+			'authorize-entry',
+			numbers=self.numbers,
+			recording_URL=RecordingUrl,
+		)
+
+	def load_response(self, name, **params):
+		cherrypy.response.headers['Content-Type'] = 'application/xml'
+		return loader.load(name + '.xml').generate(**params).render('xml').encode('utf-8')
 
 	@classmethod
 	def run(cls):

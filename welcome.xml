@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
 	<Say voice="woman">Please state your name and purpose.</Say>
-	<Record playBeep="false" action="authorize-entry.xml" method="GET" timeout="3"/>
+	<Record playBeep="false" action="authorize-entry" method="GET" timeout="3"/>
 	<Say voice="woman">Sorry, I couldn't understand you.</Say>
 	<Redirect/>
 </Response>
