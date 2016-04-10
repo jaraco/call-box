@@ -7,7 +7,7 @@ config = {
 	'global': {
 		'server.production': True,
 		'server.socket_port': int(os.environ.get('PORT', 8080)),
-		'server.socket_host': '::1',
+		'server.socket_host': '127.0.0.1',
 		'tools.encode.on': True,
 		'tools.encode.encoding': 'utf-8',
 		'tools.decode.on': True,
