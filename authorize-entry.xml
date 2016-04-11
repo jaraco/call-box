@@ -3,6 +3,6 @@
 	<Say voice="woman">Welcome to Adams Row Condo.</Say>
 	<Play digits="9" />
 	<py:for each="number in numbers">
-		<Sms to="$number">Entry authz Adams Row Condo ($recording_URL)</Sms>
+		<Sms to="$number">Entry authz Adams Row Condo ($recording_URL.mp3)</Sms>
 	</py:for>
 </Response>
