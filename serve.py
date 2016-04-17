@@ -1,5 +1,4 @@
 import os
-import io
 
 import cherrypy
 from genshi.template import TemplateLoader
