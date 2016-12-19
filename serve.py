@@ -21,7 +21,8 @@ loader = TemplateLoader('.')
 class Server:
 	@cherrypy.expose
 	def index(self, **params):
-		return self.load_response('welcome')
+		tmpl = os.environ.get('TECHNIQUE', 'welcome')
+		return self.load_response(tmpl, numbers=self.numbers)
 
 	@property
 	def numbers(self):
