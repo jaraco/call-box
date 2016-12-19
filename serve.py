@@ -1,3 +1,5 @@
+__requires__ = ['cherrypy', 'genshi']
+
 import os
 
 import cherrypy
