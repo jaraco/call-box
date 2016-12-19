@@ -2,7 +2,5 @@
 <Response xmlns:py="http://genshi.edgewall.org/">
 	<Say voice="woman">Welcome to Adams Row Condo.</Say>
 	<Play digits="9" />
-	<py:for each="number in numbers">
-		<Sms to="$number">Entry authz Adams Row Condo (${recording_URL}.mp3)</Sms>
-	</py:for>
+	<Sms py:for="number in numbers" to="$number">Entry authz Adams Row Condo (${recording_URL}.mp3)</Sms>
 </Response>
