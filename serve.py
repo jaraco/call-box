@@ -24,7 +24,12 @@ loader = TemplateLoader('.')
 class Server:
 	@cherrypy.expose
 	def index(self, **params):
-		tmpl = os.environ.get('TECHNIQUE', 'welcome')
+		allowed_numbers = os.environ.get('ALLOWED_NUMBERS')
+		tmpl = (
+			'wrong number'
+			if params['From'] not in allowed_numbers else
+			os.environ.get('TECHNIQUE', 'welcome')
+		)
 		return self.load_response(tmpl, numbers=self.numbers)
 
 	@property
