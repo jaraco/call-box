@@ -20,6 +20,7 @@ config = {
 
 loader = TemplateLoader('.')
 
+
 class Server:
 	@cherrypy.expose
 	def index(self, **params):
@@ -40,7 +41,8 @@ class Server:
 
 	def load_response(self, name, **params):
 		cherrypy.response.headers['Content-Type'] = 'application/xml'
-		return loader.load(name + '.xml').generate(**params).render('xml').encode('utf-8')
+		tmpl = loader.load(name + '.xml')
+		return tmpl.generate(**params).render('xml').encode('utf-8')
 
 	@classmethod
 	def run(cls):
